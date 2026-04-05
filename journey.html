@@ -40,28 +40,38 @@
       color: var(--text-mid); font-size: 1.05rem; line-height: 1.85;
     }
 
-    /* ── STAGE PROGRESS NAV ── */
+    /* ── BOTTOM PROGRESS NAV ── */
+
+    body { padding-bottom: 68px; }
+
     .progress-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid #e8e2d0;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--bg-dark);
+      border-top: 1px solid rgba(255,255,255,.08);
       padding: 0 4%;
       display: flex; align-items: center; gap: 0;
       overflow-x: auto; scrollbar-width: none;
+      box-shadow: 0 -4px 24px rgba(0,0,0,.18);
     }
     .progress-nav::-webkit-scrollbar { display: none; }
     .pn-item {
       flex-shrink: 0;
-      padding: 1.1rem 1.4rem;
-      font-family: var(--serif); font-size: .72rem;
+      padding: 1.1rem 1.3rem;
+      font-family: var(--serif); font-size: .68rem;
       text-transform: uppercase; letter-spacing: 1.5px;
-      color: var(--text-soft); cursor: pointer;
-      border-bottom: 2px solid transparent;
+      color: rgba(255,255,255,.38); cursor: pointer;
+      border-top: 2px solid transparent;
       transition: color .25s, border-color .25s;
       white-space: nowrap;
       text-decoration: none; display: block;
     }
-    .pn-item:hover, .pn-item.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .pn-item:hover { color: rgba(255,255,255,.75); }
+    .pn-item.active {
+      color: var(--gold);
+      border-top-color: var(--gold);
+    }
 
     /* ── STAGE SECTION ── */
     .stage {
@@ -103,20 +113,26 @@
 
     /* ── PER-STAGE CAROUSEL ── */
     .s-carousel { position: relative; }
-    .s-track-wrap { overflow: hidden; }
+    .s-track-wrap { overflow: hidden; border-radius: 10px; }
     .s-track {
       display: flex;
       transition: transform .65s cubic-bezier(.4,0,.2,1);
     }
-    .s-slide { flex-shrink: 0; padding: 0 .6rem; }
-    .s-slide img, .s-slide .s-ph {
+    .s-slide { flex-shrink: 0; padding: 0 .5rem; }
+
+
+    .s-slide img,
+    .s-slide .s-ph {
       width: 100%; display: block; object-fit: cover;
+
+      aspect-ratio: 12 / 9;
+      height: auto;
+      border-radius: 8px;
     }
-    .s-slide img { height: 420px; filter: sepia(6%); transition: filter .4s; }
+    .s-slide img { filter: sepia(6%); transition: filter .4s; }
     .s-slide img:hover { filter: sepia(0%); }
 
     .s-ph {
-      height: 420px;
       background: var(--bg-alt);
       border: 1px dashed #ccc;
       display: flex; flex-direction: column;
@@ -139,6 +155,7 @@
       cursor: pointer; font-size: 1rem; font-family: var(--body);
       display: flex; align-items: center; justify-content: center;
       transition: background .2s, color .2s; flex-shrink: 0;
+      border-radius: 4px;
     }
     .s-btn:hover { background: var(--text); color: #fff; }
     .s-btn:disabled { opacity: .25; cursor: default; }
@@ -178,7 +195,8 @@
       border-top: 1px solid #e8e2d0;
     }
     .page-nav-bar a {
-      font-size: .8rem; text-transform: uppercase; letter-spacing: 2px;
+      font-family: var(--serif); font-size: .8rem;
+      text-transform: uppercase; letter-spacing: 2px;
       text-decoration: none; color: var(--text-mid); transition: color .2s;
     }
     .page-nav-bar a:hover { color: var(--gold); }
@@ -187,8 +205,7 @@
     @media (max-width: 768px) {
       .stage-header { gap: 1rem; }
       .stage-num { font-size: 3rem; }
-      .s-slide img, .s-ph { height: 260px; }
-      .pn-item { padding: .9rem 1rem; font-size: .65rem; }
+      .pn-item { padding: .85rem .9rem; font-size: .6rem; }
     }
   </style>
 </head>
@@ -199,11 +216,13 @@
   <div class="cur-glow"></div>
 
   <nav>
-    <a href="index.html" class="nav-logo">M & E</a>
+    <a href="index.html" class="nav-logo">M & Y</a>
     <ul class="nav-links">
       <li><a href="story.html">Story</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="journey.html" class="active">Journey</a></li>
+      <li><a href="entourage.html">Entourage</a></li>
+      <li><a href="QnA.html">His&Hers</a></li>
       <li><a href="index.html#rsvp">RSVP</a></li>
     </ul>
   </nav>
@@ -212,9 +231,9 @@
   <div class="page-hero">
     <div class="page-hero-bg"></div>
     <div class="page-hero-content">
-      <span class="label">From the very beginning</span>
+      <span class="label"></span>
       <h1 class="heading">Our Journey</h1>
-      <p class="sub">subtitle</p>
+      <p class="sub">Marco & Yana</p>
     </div>
   </div>
 
@@ -223,44 +242,35 @@
     <div class="reveal">
       <span class="label">How we got here</span>
       <h2 class="heading">The Chapters of Us</h2>
-      <p>subtitle</p>
+      <p></p>
     </div>
   </div>
 
-  <!-- Sticky nav -->
-  <div class="progress-nav" id="progressNav">
-    <a class="pn-item" href="#stage-dates">Dates</a>
-    <a class="pn-item" href="#stage-gtky">GTKY</a>
-    <a class="pn-item" href="#stage-ligaw">Ligaw</a>
-    <a class="pn-item" href="#stage-family">Family</a>
-    <a class="pn-item" href="#stage-pamamanhikan">Pamamanhikan</a>
-    <a class="pn-item" href="#stage-proposal">Proposal</a>
-    <a class="pn-item" href="#stage-sfc">SFC</a>
-  </div>
-
-  <!-- ░░ STAGE 1 — DATES ░░ -->
+  <!-- ░░ STAGE 1 — Getting to Know Each Other ░░ -->
   <section class="stage" id="stage-dates">
     <div class="stage-inner">
       <div class="stage-header reveal">
         <span class="stage-num">01</span>
         <div>
           <span class="stage-tag">Chapter One</span>
-          <h2 class="stage-title">Dates</h2>
+          <h2 class="stage-title">Getting to Know Each Other</h2>
         </div>
       </div>
       <p class="stage-desc reveal">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+        The first pages — written between site visits.
       </p>
       <div class="s-carousel reveal">
         <div class="s-track-wrap"><div class="s-track">
-          <div class="s-slide"><img src="images/DSC03863.JPG" alt="GTKY"></div>
-          <div class="s-slide"><img src="images/DSC09343.JPG" alt="GTKY"></div>
-          <div class="s-slide"><img src="images/IMG_4142.jpg" alt="GTKY"></div>
-          <div class="s-slide"><img src="images/Dates/20230513_142739.jpg" alt="GTKY"></div>
-          <div class="s-slide"><img src="images/Dates/DSC03863.JPG" alt="GTKY"></div>
-          <div class="s-slide"><img src="images/Dates/DSC04360.JPG" alt="GTKY"></div>
-          <div class="s-slide"><img src="images/Dates/IMG-1c13bda709c95340c2c98e6129441004-V.jpg" alt="GTKY"></div>
-          <div class="s-slide"><img src="images/Dates/IMG_20230720_002632_136.jpg" alt="GTKY"></div>
+          <div class="s-slide"><img src="images/GTKY/20230310_202237.jpg" alt="GTKY"></div>
+          <div class="s-slide"><img src="images/GTKY/IMG-20230310-WA0009.jpg" alt="GTKY"></div>
+          <div class="s-slide"><img src="images/GTKY/IMG-20230411-WA0000.jpg" alt="GTKY" style="object-position:60% 15%;"></div>
+          <div class="s-slide"><img src="images/GTKY/IMG-20230411-WA0006.jpg" alt="GTKY" style="object-position:60% 15%;"></div>
+          <div class="s-slide"><img src="images/GTKY/IMG_20230414_163955.jpg" alt="GTKY"></div>
+          <div class="s-slide"><img src="images/GTKY/IMG_20230425_172052.jpg" alt="GTKY" style="object-position:20% 15%;"></div>
+          <div class="s-slide"><img src="images/GTKY/Messenger_creation_1677535066038062.jpeg" alt="GTKY" style="object-position: 30% 25%;"></div>
+          <div class="s-slide"><img src="images/GTKY/Messenger_creation_748443510293837.jpeg" alt="GTKY" style="object-position:60% 5%;"></div>
+          <div class="s-slide"><img src="images/GTKY/Messenger_creation_778949276993949.jpeg" alt="GTKY" style="object-position:60% 15%;"></div>
+          <div class="s-slide"><img src="images/GTKY/Messenger_creation_9BBCC4FA-B3B9-49AA-96F0-61AA047EDDED.jpeg" alt="GTKY" style="object-position:60% 15%;"></div>
         </div></div>
         <div class="s-controls">
           <button class="s-btn prev">←</button>
@@ -272,25 +282,30 @@
     </div>
   </section>
 
-  <!-- ░░ STAGE 2 — GTKY ░░ -->
+  <!-- ░░ STAGE 2 — Ligawan ░░ -->
   <section class="stage" id="stage-gtky">
     <div class="stage-inner">
       <div class="stage-header reveal">
         <span class="stage-num">02</span>
         <div>
           <span class="stage-tag">Chapter Two</span>
-          <h2 class="stage-title">Getting to Know You</h2>
+          <h2 class="stage-title">Ligawan</h2>
         </div>
       </div>
       <p class="stage-desc reveal">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.
+        A sincere pursuit where intentions were made clear and love began to take root.
       </p>
       <div class="s-carousel reveal">
         <div class="s-track-wrap"><div class="s-track">
-          <div class="s-slide"><img src="images/BLD03307.jpg" alt="GTKY"></div>
-          <div class="s-slide"><img src="images/BLD03128.jpg" alt="GTKY"></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">GTKY · Photo 3</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">GTKY · Photo 4</span></div></div>
+          <div class="s-slide"><img src="images/Ligawan/20230416_115820.jpg" alt="Ligawan" style="object-position:60% 75%;"></div>
+          <div class="s-slide"><img src="images/Ligawan/20230430_074632.jpg" alt="Ligawan"style="object-position: 0% 65%;"></div>
+          <div class="s-slide"><img src="images/Ligawan/20230430_085424.jpg" alt="Ligawan" style="object-position:60% 65%;"></div>
+          <div class="s-slide"><img src="images/Ligawan/20230501_201743.jpg" alt="Ligawan"></div>
+          <div class="s-slide"><img src="images/Ligawan/IMG_20230404_091253.jpg" alt="Ligawan"></div>
+          <div class="s-slide"><img src="images/Ligawan/IMG_20230406_144104.jpg" alt="Ligawan"></div>
+          <div class="s-slide"><img src="images/Ligawan/IMG_20230406_144142.jpg" alt="Ligawan"></div>
+          <div class="s-slide"><img src="images/Ligawan/IMG_20230416_142849.jpg" alt="Ligawan" style="object-position:60% 75%;"></div>
+          <div class="s-slide"><img src="images/Ligawan/e4f897fb-b2bb-4fd5-b747-073cfe5204c8.jpg" alt="Ligawan" style="object-position:60% 75%;"></div>
         </div></div>
         <div class="s-controls">
           <button class="s-btn prev">←</button>
@@ -302,25 +317,52 @@
     </div>
   </section>
 
-  <!-- ░░ STAGE 3 — LIGAW ░░ -->
+  <!-- ░░ STAGE 3 — Dating ░░ -->
   <section class="stage" id="stage-ligaw">
     <div class="stage-inner">
       <div class="stage-header reveal">
         <span class="stage-num">03</span>
         <div>
           <span class="stage-tag">Chapter Three</span>
-          <h2 class="stage-title">Ligaw</h2>
+          <h2 class="stage-title">Dating</h2>
         </div>
       </div>
       <p class="stage-desc reveal">
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+        Shared moments, laughter, and memories that deepened what we started.
       </p>
       <div class="s-carousel reveal">
         <div class="s-track-wrap"><div class="s-track">
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Ligaw · Photo 1</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Ligaw · Photo 2</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Ligaw · Photo 3</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Ligaw · Photo 4</span></div></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/20230513_142739.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/48665b0d-5203-4c8d-bd51-adb6067b6012.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/68243967-f875-4b33-9b02-0e8b69961b65.jpg" alt="Dating" style="object-position:60% 65%;"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/DSC03863.JPG" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/DSC04360.JPG" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/DSC09343.JPG" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/DSC09811.JPG" alt="Dating" style="object-position:20% 99%;"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20230720_002632_136.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20230820_192146.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20230918_000148_975.jpg" alt="Dating" style="object-position:center></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20231102_154939.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20240405_152136.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20240423_144545.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20240429_131905_484.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20240507_205636.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20240616_124702.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20241101_080840.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20241202_145330.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20241225_210431.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20241227_154546.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20250311_000919_798.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20250407_164705.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20250501_090029.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_20250503_232729_1.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/IMG_4142.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/Screenshot_20230917_235441_com.huawei.himovie.overseas_edit_34943202393625.jpg" alt="Dating"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/Screenshot_20250101_010619_com.huawei.himovie.overseas.jpg" alt="Dating" style="object-position:80% 95%;"></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/bc6cd2a4-e38e-42f8-9e1e-44ddbb3533f7.jpg" alt="Dating" "></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/d34d01a6-4b15-4453-81df-0871a533b605.jpg" alt="Dating" "></div>
+          <div class="s-slide"><img src="Dating-20260330T120832Z-3-001/Dating/e458b1a7-6019-447c-a215-c24fe74dfe1b.jpg" alt="Dating" "></div>
+         
         </div></div>
         <div class="s-controls">
           <button class="s-btn prev">←</button>
@@ -339,18 +381,29 @@
         <span class="stage-num">04</span>
         <div>
           <span class="stage-tag">Chapter Four</span>
-          <h2 class="stage-title">Family</h2>
+          <h2 class="stage-title">With the Family</h2>
         </div>
       </div>
       <p class="stage-desc reveal">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet.
+        Welcomed with open arms, where love grew even more through family.
       </p>
       <div class="s-carousel reveal">
         <div class="s-track-wrap"><div class="s-track">
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Family · Photo 1</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Family · Photo 2</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Family · Photo 3</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Family · Photo 4</span></div></div>
+          <div class="s-slide"><img src="images/With the Family/129070a9-f49f-429a-863a-121b970e6a94.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/14593654-f52b-4869-9250-eea482405cfe.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/214a0def-68a5-4e0e-aa24-be07cdfa189c.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/64526fc5-86a1-4961-b466-40e8b5d6266c.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/9d6af7ff-9ddc-4bfe-9981-24f2347f53e3.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/b8a2a1dd-93f0-4448-ac8d-3aca92fe345d.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/d7be3344-7098-4c3e-a48d-c0365101d4fc.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/192b8b80-45ff-4d65-a4f9-3d710249215a.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/349e1025-74eb-44b1-9625-6944a16e98ff.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/ad067132-86db-4023-9a7b-c32db79664c1.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/f6387fb7-9132-4e3f-90d8-4b25c555bef2.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/0666f3bf-e1b7-4f4e-ba8f-bb80fea40a47.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/499099a8-c870-4f3c-a140-99e97a6197ae.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/73c4d898-3e2b-4344-901e-f2bb8739804b.jpg" alt="Family"></div>
+          <div class="s-slide"><img src="images/With the Family/88a3ae34-1800-41b0-b18e-83632bca12b0.jpg" alt="Family"></div>
         </div></div>
         <div class="s-controls">
           <button class="s-btn prev">←</button>
@@ -362,25 +415,27 @@
     </div>
   </section>
 
-  <!-- ░░ STAGE 5 — PAMAMANHIKAN ░░ -->
+  <!-- ░░ STAGE 5 — With SFC ░░ -->
   <section class="stage" id="stage-pamamanhikan">
     <div class="stage-inner">
       <div class="stage-header reveal">
         <span class="stage-num">05</span>
         <div>
           <span class="stage-tag">Chapter Five</span>
-          <h2 class="stage-title">Pamamanhikan Weekend</h2>
+          <h2 class="stage-title">With SFC</h2>
         </div>
       </div>
       <p class="stage-desc reveal">
-        Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+        Grounded in faith, we grew together with Christ at the center.
       </p>
       <div class="s-carousel reveal">
         <div class="s-track-wrap"><div class="s-track">
-          <div class="s-slide"><img src="images/BLD03128.jpg" alt="Pamamanhikan"></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Pamamanhikan · Photo 2</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Pamamanhikan · Photo 3</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Pamamanhikan · Photo 4</span></div></div>
+          <div class="s-slide"><img src="images/With SFC/08b0bb53-2d16-415e-88eb-68dc1eb0103b (1).jpg" alt="SFC"></div>
+          <div class="s-slide"><img src="images/With SFC/0dc85dbc-677a-4ff2-af01-f7ddcdb4875c.jpg" alt="SFC"></div>
+          <div class="s-slide"><img src="images/With SFC/337b1928-6818-447d-86f7-0970ef9379a3.jpg" alt="SFC"></div>
+          <div class="s-slide"><img src="images/With SFC/558447237_871385288887227_133221763687271332_n.jpg" alt="SFC"></div>
+          <div class="s-slide"><img src="images/With SFC/592bcb89-395f-42e5-86ce-daac563614b9.jpg" alt="SFC"></div>
+          <div class="s-slide"><img src="images/With SFC/661b2c8d-ef2f-4f44-850b-c0295e677553 (1).jpg" alt="SFC" style="object-position:30% 85%;"></div>
         </div></div>
         <div class="s-controls">
           <button class="s-btn prev">←</button>
@@ -403,15 +458,21 @@
         </div>
       </div>
       <p class="stage-desc reveal">
-        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.
+        A heartfelt "yes" to a lifetime of love and choosing each other every day.
       </p>
       <div class="s-carousel reveal">
         <div class="s-track-wrap"><div class="s-track">
-          <div class="s-slide"><img src="images/BLD03307.jpg" alt="Proposal" style="object-position:center 20%;"></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Proposal · Photo 2</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Proposal · Photo 3</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Proposal · Photo 4</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">Proposal · Photo 5</span></div></div>
+          <div class="s-slide"><img src="images/The Proposal/53fa01dd-009b-4031-81f4-00f249a86e0e.jpg" alt="Proposal"></div>
+          <div class="s-slide"><img src="images/The Proposal/639d04d3-629d-4a7a-a2ef-d1d558c5e6ff.jpg" alt="Proposal"></div>
+          <div class="s-slide"><img src="images/The Proposal/6d50a7e2-567a-464b-8bc2-7ab7f6136342.jpg" alt="Proposal"></div>
+          <div class="s-slide"><img src="images/The Proposal/7d316d91-2c11-404a-a12b-9aab247c0f66.jpg" alt="Proposal"></div>
+          <div class="s-slide"><img src="images/The Proposal/8423341a-1f8c-46a5-9321-ef20709e10a1.jpg" alt="Proposal" style="object-position:100% 65%;"></div>
+          <div class="s-slide"><img src="images/The Proposal/84c7e772-4a51-4eec-aa56-1294a43c42ad.jpg" alt="Proposal"></div>
+          <div class="s-slide"><img src="images/The Proposal/de752232-43ec-4d69-8648-7ba53ae0caff.jpg" alt="Proposal" style="object-position:60% 75%;"></div>
+          <div class="s-slide"><img src="images/The Proposal/eca7f06c-4d3f-401f-b497-2d804b0cbe4d.jpg" alt="Proposal"></div>
+          <div class="s-slide"><img src="images/The Proposal/f0f26682-c1a6-461d-9847-98e3c74ed5d4.jpg" alt="Proposal"></div>
+          <div class="s-slide"><img src="images/The Proposal/fa08f59b-febc-4c66-8b50-33bd4f5c6efb.jpg" alt="Proposal"></div>
+          <div class="s-slide"><img src="images/The Proposal/ffad7755-8407-4220-a94a-cee2558bd73d.jpg" alt="Proposal"></div>
         </div></div>
         <div class="s-controls">
           <button class="s-btn prev">←</button>
@@ -423,25 +484,69 @@
     </div>
   </section>
 
-  <!-- ░░ STAGE 7 — SFC ░░ -->
+  <!-- ░░ STAGE 7 — Pamamanhikan ░░ -->
   <section class="stage" id="stage-sfc">
     <div class="stage-inner">
       <div class="stage-header reveal">
         <span class="stage-num">07</span>
         <div>
           <span class="stage-tag">Chapter Seven</span>
-          <h2 class="stage-title">SFC</h2>
+          <h2 class="stage-title">Pamamanhikan</h2>
         </div>
       </div>
       <p class="stage-desc reveal">
-        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.
+        Honoring tradition, as two families come together in blessing and unity.
       </p>
       <div class="s-carousel reveal">
         <div class="s-track-wrap"><div class="s-track">
-          <div class="s-slide"><img src="images/BLD03128.jpg" alt="SFC" style="object-position:center 40%;"></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">SFC · Photo 2</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">SFC · Photo 3</span></div></div>
-          <div class="s-slide"><div class="s-ph"><span class="ph-icon"></span><span class="ph-lbl">SFC · Photo 4</span></div></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/3edd1ed8-5f89-42a2-bff7-9464e459b92a (1).jpg" alt="Pamamanhikan"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/47122a0f-7b4f-4c67-bf2b-3700dddd6037.jpg" alt="Pamamanhikan" style="object-position:60% 65%;"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/634225293_4341173379491707_6654718101457996864_n.jpg" alt="Pamamanhikan"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/634927660_2085841865506587_8315364356334740426_n.jpg" alt="Pamamanhikan"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/637229254_922326363502712_7898520425071449955_n (1).jpg" alt="Pamamanhikan"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/639647539_4145649719097809_8490191143073513723_n.jpg" alt="Pamamanhikan"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/639817949_1657572015668425_285867503039191828_n.jpg" alt="Pamamanhikan" style="object-position:60% 65%;"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/642496203_1421104493121794_7740835001998807204_n.jpg" alt="Pamamanhikan"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/7bd561c3-0d98-422a-8118-52a4a71bbb89.jpg" alt="Pamamanhikan" style="object-position:60% 85%;"></div>
+          <div class="s-slide"><img src="images/Pamamanhikan/f1a466d3-9829-4872-85ba-5232c1825e6a.jpg" alt="Pamamanhikan"></div>
+        </div></div>
+        <div class="s-controls">
+          <button class="s-btn prev">←</button>
+          <div class="s-dots"></div>
+          <button class="s-btn next">→</button>
+          <span class="s-count"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ STAGE 8 — Wedding Preps ░░ -->
+  <section class="stage" id="stage-sfc">
+    <div class="stage-inner">
+      <div class="stage-header reveal">
+        <span class="stage-num">08</span>
+        <div>
+          <span class="stage-tag">Chapter Eight</span>
+          <h2 class="stage-title">Preparing for the Big Day</h2>
+        </div>
+      </div>
+      <p class="stage-desc reveal">
+        Taking each step together as we get ready for the life we are about to share.
+      </p>
+      <div class="s-carousel reveal">
+        <div class="s-track-wrap"><div class="s-track">
+          <div class="s-slide"><img src="images/Wedding Preps/645169131_1636672754141057_2298908291661442323_n.jpg" alt="Pamamanhikan"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/c7a4ae6e-421c-4223-b8c2-60a110ae3688.jpg" alt="Wedding Preps"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/bc0b7f17-c20e-4956-b732-c1baf5bae1de.jpg" alt="Wedding Preps"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/66d2019d-9466-4202-b408-e34629403078.jpg" alt="Wedding Preps"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/17e96e2b-83c3-4a2e-95cd-5ac15ebc41f3.jpg" alt="Wedding Preps" style="object-position:60% 65%;"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/8c8dfba2-0a70-45d9-a5cf-86205e15b820.jpg" alt="Wedding Preps"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/7eefda1a-7744-4479-8651-e11b0bfc63e4.jpg" alt="Wedding Preps" style="object-position"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/4fe9922a-44ac-466a-a54a-007747a1706b.jpg" alt="Wedding Preps"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/647734301_1537046410725115_2937301478745539242_n.jpg" alt="Wedding Preps"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/645177795_2336228540204869_6244292349054159985_n.jpg" alt="Wedding Preps"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/642151448_931686402642684_5187479580736968718_n.jpg" alt="Wedding Preps"></div>
+          <div class="s-slide"><img src="images/Wedding Preps/9c8c9e35-a6d8-4948-b02f-0e620af8c748.jpg" alt="Wedding Preps"></div>
         </div></div>
         <div class="s-controls">
           <button class="s-btn prev">←</button>
@@ -455,27 +560,38 @@
 
   <!-- Closing -->
   <div class="closing-quote">
-    <blockquote>quotes if want niyo po</blockquote>
-    <cite>— uhm some famous person</cite>
+    <blockquote></blockquote>
+    <cite></cite>
   </div>
 
   <div class="page-nav-bar">
     <a href="gallery.html">← Gallery</a>
-    <a href="index.html#rsvp">RSVP Now →</a>
+    <a href="entourage.html">Entourage →</a>
   </div>
 
   <footer>
     <p>With love and gratitude,</p>
-    <p class="foot-script">Marco Polo &amp; Elyannah</p>
+    <p class="foot-script">Marco &amp; Yana</p>
     <p style="margin-top:1.5rem; font-size:.75rem; color:#888; letter-spacing:2px;">MAY 11, 2026 · VIRAC, CATANDUANES</p>
   </footer>
+
+
+  <div class="progress-nav" id="progressNav">
+    <a class="pn-item" href="#stage-dates">Getting to Know Each Other</a>
+    <a class="pn-item" href="#stage-gtky">Ligawan</a>
+    <a class="pn-item" href="#stage-ligaw">Dating</a>
+    <a class="pn-item" href="#stage-family">With the Family</a>
+    <a class="pn-item" href="#stage-pamamanhikan">With SFC</a>
+    <a class="pn-item" href="#stage-proposal">Proposal</a>
+    <a class="pn-item" href="#stage-sfc">Pamamanhikan</a>
+  </div>
 
   <script>
     /* ── Cursor ── */
     const dot  = document.querySelector('.cur-dot');
     const glow = document.querySelector('.cur-glow');
     document.addEventListener('mousemove', e => {
-      dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+      dot.style.left = e.clientX+'px'; dot.style.top = e.clientY+'px';
       setTimeout(() => { glow.style.left = e.clientX+'px'; glow.style.top = e.clientY+'px'; }, 55);
     });
 
@@ -486,16 +602,16 @@
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
     /* ── Sticky nav active state ── */
-    const stageEls  = document.querySelectorAll('.stage');
-    const navAnchors= document.querySelectorAll('.pn-item');
-    const stageObs  = new IntersectionObserver(entries => {
+    const stageEls   = document.querySelectorAll('.stage');
+    const navAnchors = document.querySelectorAll('.pn-item');
+    const stageObs   = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if(e.isIntersecting) {
           navAnchors.forEach(n => n.classList.remove('active'));
           const match = document.querySelector(`.pn-item[href="#${e.target.id}"]`);
           if(match) {
             match.classList.add('active');
-            match.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            match.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
           }
         }
       });
@@ -504,19 +620,28 @@
 
     /* ── Per-stage carousel factory ── */
     document.querySelectorAll('.s-carousel').forEach(car => {
-      const track   = car.querySelector('.s-track');
-      const slides  = Array.from(car.querySelectorAll('.s-slide'));
-      const dotsWrap= car.querySelector('.s-dots');
-      const countEl = car.querySelector('.s-count');
-      const prevBtn = car.querySelector('.prev');
-      const nextBtn = car.querySelector('.next');
-      const total   = slides.length;
-      let cur = 0;
+      const track    = car.querySelector('.s-track');
+      const slides   = Array.from(car.querySelectorAll('.s-slide'));
+      const dotsWrap = car.querySelector('.s-dots');
+      const countEl  = car.querySelector('.s-count');
+      const prevBtn  = car.querySelector('.prev');
+      const nextBtn  = car.querySelector('.next');
+      const total    = slides.length;
+      let page = 0;
 
       function vis() {
         return window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
       }
-      function maxCur() { return Math.max(0, total - vis()); }
+      function totalPages() { return Math.ceil(total / vis()); }
+
+      /* The starting slide index for a given page — last page shows
+        the final vis() slides so nothing gets cut off */
+      function slideForPage(p) {
+        const v = vis();
+        const tp = totalPages();
+        if(p >= tp - 1) return Math.max(0, total - v);
+        return p * v;
+      }
 
       function setWidths() {
         slides.forEach(s => s.style.width = `${100 / vis()}%`);
@@ -524,39 +649,43 @@
 
       function buildDots() {
         dotsWrap.innerHTML = '';
-        const pages = Math.ceil(total / vis());
-        for(let i = 0; i < pages; i++) {
+        const tp = totalPages();
+        for(let i = 0; i < tp; i++) {
           const d = document.createElement('div');
           d.className = 's-dot';
-          d.addEventListener('click', () => go(i * vis()));
+          d.addEventListener('click', () => goPage(i));
           dotsWrap.appendChild(d);
         }
       }
 
       function render() {
-        cur = Math.min(cur, maxCur());
-        const v = vis();
-        // translate: each slide is 100/v %, so shift by cur slides
-        track.style.transform = `translateX(-${cur * (100 / v)}%)`;
-        // dots
-        const page = Math.floor(cur / v);
-        dotsWrap.querySelectorAll('.s-dot').forEach((d,i) => d.classList.toggle('on', i === page));
-        countEl.textContent = `${page + 1} / ${Math.ceil(total / v)}`;
-        prevBtn.disabled = cur === 0;
-        nextBtn.disabled = cur >= maxCur();
+        const v  = vis();
+        const tp = totalPages();
+        page = Math.min(page, tp - 1);
+
+        const startSlide = slideForPage(page);
+        track.style.transform = `translateX(-${startSlide * (100 / v)}%)`;
+
+        dotsWrap.querySelectorAll('.s-dot').forEach((d, i) => d.classList.toggle('on', i === page));
+        countEl.textContent = `${page + 1} / ${tp}`;
+        prevBtn.disabled = page === 0;
+        nextBtn.disabled = page >= tp - 1;
       }
 
-      function go(idx) { cur = Math.max(0, Math.min(idx, maxCur())); render(); }
+      function goPage(p) {
+        page = Math.max(0, Math.min(p, totalPages() - 1));
+        render();
+      }
 
-      prevBtn.addEventListener('click', () => go(cur - vis()));
-      nextBtn.addEventListener('click', () => go(cur + vis()));
+      prevBtn.addEventListener('click', () => goPage(page - 1));
+      nextBtn.addEventListener('click', () => goPage(page + 1));
 
       /* touch swipe */
       let touchX = 0;
       track.addEventListener('touchstart', e => touchX = e.touches[0].clientX, { passive:true });
-      track.addEventListener('touchend',   e => {
+      track.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - touchX;
-        if(Math.abs(dx) > 40) dx < 0 ? go(cur + vis()) : go(cur - vis());
+        if(Math.abs(dx) > 40) dx < 0 ? goPage(page + 1) : goPage(page - 1);
       }, { passive:true });
 
       setWidths(); buildDots(); render();

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marco Polo & Elyannah | May 11, 2026</title>
+  <title>Marco & Yana | May 11, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="shared.css">
@@ -12,8 +12,9 @@
     .hero {
       height: 100vh; min-height: 640px;
       display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; padding: 0 7%;
-      position: relative; overflow: hidden;
+      align-items: left; padding: 0 7%;
+      position: relative; 
+      overflow: hidden;
     }
     .hero-text { position:relative; z-index:3; }
     .wedding-of {
@@ -45,13 +46,12 @@
       overflow:hidden; position:relative;
     }
     .hero-img-wrap img {
-      width:100%; height:115%;
+      width:100%; height:100%;
       object-fit:cover; object-position: center top;
       transform: translateY(0);
       transition: transform .1s linear;
     }
 
-    /* rotating seal — CENTRED between the two columns */
     .sun-seal {
       position: absolute;
       top: 50%; left: 50%;
@@ -67,9 +67,12 @@
     .seal-monogram {
       font-family: var(--serif);
       font-size:1.1rem; letter-spacing:2px;
-      background: var(--bg); padding:.3rem .5rem;
-      border-radius: 50%; border:1px solid var(--gold);
-      color: var(--gold); white-space:nowrap;
+      background: var(--bg);
+      width: 84px; height: 84px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
     }
 
     /* ══ MESSAGE ══ */
@@ -84,6 +87,7 @@
     .message-img-wrap img {
       width:100%; height:115%; object-fit:cover;
       object-position: center 20%;
+      transform: scale(1.4);
     }
     .message-content h3 {
       font-family: var(--serif);
@@ -103,7 +107,7 @@
     /* ══ DETAILS ══ */
     .details-sec { background: var(--bg-dark); color: #FDFCF6; }
     .details-head {
-      text-align:center; padding-bottom:3rem;
+      text-align:center; padding: 4rem 5% 3rem;
       border-bottom: 1px solid rgba(255,255,255,.15);
       margin-bottom:0;
     }
@@ -113,7 +117,7 @@
       display:grid; grid-template-columns: repeat(3,1fr);
       border-top: 1px solid rgba(255,255,255,.12);
     }
-    .detail-card {
+    .detail-card { text-align:center;
       padding: 3.5rem 2.5rem;
       border-right: 1px solid rgba(255,255,255,.12);
       transition: background .4s;
@@ -192,13 +196,34 @@
 
     /* ══ MOBILE ══ */
     @media (max-width:768px) {
-      .hero { grid-template-columns:1fr; height:auto; padding-top:6rem; padding-bottom:3rem; }
-      .hero-img-wrap { height:45vh; margin-top:2rem; }
-      .sun-seal { top:auto; bottom:1rem; left:50%; transform:translateX(-50%); }
+
+      .hero { 
+        display: flex; 
+        flex-direction: column; 
+        height: auto; 
+        padding-top: 6rem; 
+        padding-bottom: 3rem; 
+      }
+      .hero-text { 
+        order: 1; 
+      }
+      .sun-seal { 
+        order: 2; 
+        position: relative; 
+        top: auto; left: auto; bottom: auto; transform: none; 
+        margin: 2rem auto -65px auto; 
+        z-index: 10;
+      }
+      .hero-img-wrap { 
+        order: 3; 
+        height: 45vh; 
+        margin-top: 0; 
+      }
+      
       .message-grid { grid-template-columns:1fr; gap:2.5rem; }
       .message-img-wrap { height:320px; }
       .details-grid { grid-template-columns:1fr; }
-      .detail-card { border-right:none; border-bottom:1px solid rgba(255,255,255,.12); }
+      .detail-card { text-align:center; border-right:none; border-bottom:1px solid rgba(255,255,255,.12); }
       .timer { gap:1.5rem; }
       .t-val { font-size:2.5rem; }
     }
@@ -212,23 +237,24 @@
   <div class="cur-glow"></div>
 
   <nav>
-    <a href="index.html" class="nav-logo">M & E</a>
+    <a href="index.html" class="nav-logo">M & Y</a>
     <ul class="nav-links">
       <li><a href="story.html">Story</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="journey.html">Journey</a></li>
+      <li><a href="entourage.html">Entourage</a></li>
+      <li><a href="QnA.html">His&Hers</a></li>
       <li><a href="#rsvp">RSVP</a></li>
     </ul>
   </nav>
 
-  <!-- ░░ HERO ░░ -->
-  <section class="hero" id="home">
+ <section class="hero" id="home">
     <div class="hero-text">
       <span class="wedding-of">The wedding of</span>
       <h1 class="names">
-        <span>MARCO POLO</span>
+        <span>MARCO</span>
         <span class="amp">&</span>
-        <span>ELYANNAH</span>
+        <span>YANA</span>
       </h1>
       <div class="hero-date">
         May 11, 2026<br>Virac, Catanduanes
@@ -236,28 +262,26 @@
     </div>
 
     <div class="hero-img-wrap parallax-img">
-      <img src="images/BLD03307.jpg" alt="Marco Polo and Elyannah">
+      <img src="images/0d72737c-f453-404e-b99c-975beeeeb14b (1).jpg" alt="Marco Polo and Elyannah">
     </div>
 
-    <!-- ROTATING SEAL — centred between the two columns -->
     <div class="sun-seal">
       <svg viewBox="0 0 100 100" width="130" height="130">
         <path id="cp" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" fill="transparent"/>
         <text font-size="10.5" font-family="Cinzel" letter-spacing="1.8" fill="#1a1a1a">
-          <textPath href="#cp">FOREVER BEGINS NOW • M&amp;E • </textPath>
+          <textPath href="#cp">together forever•Marco &amp;Yana•</textPath>
         </text>
       </svg>
       <div class="seal-center">
-        <span class="seal-monogram">M&E</span>
+        <span class="seal-monogram">M&Y</span>
       </div>
     </div>
   </section>
 
-  <!-- ░░ MESSAGE FROM THE COUPLE ░░ -->
   <section class="message-sec sec reveal" id="story">
     <div class="message-grid">
       <div class="message-img-wrap reveal">
-        <img src="images/BLD03128.jpg" alt="Marco Polo and Elyannah">
+        <img src="images/BLD03170.jpg" alt="Marco Polo and Elyannah" style="object-position: 30% 55%;" >
       </div>
       <div class="message-content reveal">
         <h3>Message from the Couple</h3>
@@ -266,7 +290,7 @@
         <p>As we prepare for our big day, we've created this space to keep you updated and help you feel right at home as you celebrate with us.</p>
         <p>We can't wait to laugh, celebrate, and make unforgettable memories with you. Thank you for being part of our story.</p>
         <p style="margin-top:1.5rem; color:#888; font-size:.9rem;">With love,</p>
-        <div class="couple-sign">Marco Polo &amp; Elyannah</div>
+        <div class="couple-sign">Marco &amp; Yana</div>
         <div style="margin-top:2rem;">
           <a href="story.html" class="btn">Read Our Story →</a>
         </div>
@@ -274,7 +298,6 @@
     </div>
   </section>
 
-  <!-- ░░ DETAILS ░░ -->
   <section class="details-sec" id="details">
     <div class="details-head">
       <span class="label">Save the Date</span>
@@ -285,7 +308,7 @@
         <div class="detail-icon">⛪</div>
         <div class="detail-lbl">Ceremony</div>
         <p class="venue">Immaculate Conception Cathedral</p>
-        <p>1:00 PM<br><span style="color:rgba(255,255,255,.45); font-size:.85rem;">Virac, Catanduanes</span></p>
+        <p>2:00 PM<br><span style="color:rgba(255,255,255,.45); font-size:.85rem;">Virac, Catanduanes</span></p>
       </div>
       <div class="detail-card reveal">
         <div class="detail-icon">🥂</div>
@@ -296,13 +319,12 @@
       <div class="detail-card reveal">
         <div class="detail-icon">✨</div>
         <div class="detail-lbl">Dress Code</div>
-        <p class="venue" style="color:var(--gold);">Formal Sunlight</p>
-        <p>Ladies in Gold / Champagne<br>Gents in Tan</p>
+        <p class="venue" style="color:var(--gold);">Semi-Formal</p>
+        <p>in shades of yellow/ gold / champagne<br></p>
       </div>
     </div>
   </section>
 
-  <!-- ░░ COUNTDOWN ░░ -->
   <div class="countdown-sec">
     <div class="count-label">Counting down to forever</div>
     <div class="timer" id="timer">
@@ -313,69 +335,53 @@
     </div>
   </div>
 
-  <!-- ░░ FAQ ░░ -->
   <section class="faq-sec sec" id="faq">
     <div style="text-align:center; margin-bottom:3.5rem;" class="reveal">
       <span class="label">Got questions?</span>
       <h2 class="heading">We've Got Answers</h2>
     </div>
     <div class="faq-wrap">
-
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Question<span class="faq-icon">+</span>
+          What should I wear?<span class="faq-icon">+</span>
         </div>
         <div class="faq-a">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+          <p>Come dressed in semi-formal attire in your favorite shade of gold, yellow, or champagne, and celebrate with us in warmth and joy! Your presence already brightens our day — but a touch of sunlight will make it even more special.</p>
         </div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Question<span class="faq-icon">+</span>
+          Are gifts required?<span class="faq-icon">+</span>
         </div>
         <div class="faq-a">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+          <p>Your presence is the greatest gift we could ask for. However, if you wish to bless us further, a simple monetary gift would be deeply appreciated as we begin our new life together.</p>
         </div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Question<span class="faq-icon">+</span>
+          Can I bring a plus one?<span class="faq-icon">+</span>
         </div>
         <div class="faq-a">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+          <p>Due to limited seating, we kindly ask that only guests listed on the invitation attend. Thank you so much for your understanding!</p>
         </div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
-          Question<span class="faq-icon">+</span>
+          Where should I sit?<span class="faq-icon">+</span>
         </div>
         <div class="faq-a">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+          <p>You’re welcome to sit anywhere during the ceremony and enjoy the moment with us. At the reception, assigned seating will be arranged, with a place thoughtfully prepared just for you.</p>
         </div>
       </div>
-
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Question<span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-        </div>
-      </div>
-
     </div>
-  </section>
+  </section>      
 
-  <!-- ░░ RSVP ░░ -->
   <section class="rsvp-sec sec" id="rsvp">
     <div class="rsvp-inner">
       <div class="reveal">
-        <span class="label" style="text-align:center; color:var(--text-soft);">Will you join us?</span>
-        <h2 class="heading" style="margin-bottom:.5rem;">Joyfully Accept?</h2>
-        <p class="sub">Kindly respond before April 20, 2026</p>
+        <span class="label" style="text-align:center; color:var(--text-soft);"></span>
+        <h2 class="heading" style="margin-bottom:.5rem;">Will you join us?</h2>
+        <p class="sub">Kindly respond before April 10, 2026</p>
       </div>
       <form id="rsvpForm" class="reveal">
         <span class="reserved-note">We have reserved one seat for you.</span>
@@ -386,8 +392,8 @@
           <option value="Accepts">Joyfully Accepts</option>
           <option value="Declines">Regretfully Declines</option>
         </select>
-        <textarea class="form-field" id="entryMessage" placeholder="Message for the couple" rows="3"></textarea>
-        <button type="submit" class="btn btn-gold" style="width:100%; margin-top:1rem; font-size:.85rem;">Confirm Attendance</button>
+        <textarea class="form-field" id="entryMessage" placeholder="Message for the couple (optional)" rows="3"></textarea>
+        <button type="submit" class="btn btn-gold" id="rsvpBtn" style="width:100%; margin-top:1rem; font-size:.85rem;">Confirm Attendance</button>
         <div class="form-feedback" id="formFeedback"></div>
       </form>
     </div>
@@ -395,12 +401,12 @@
 
   <footer>
     <p>With love and gratitude,</p>
-    <p class="foot-script">Marco Polo &amp; Elyannah</p>
+    <p class="foot-script">Marco &amp; Yana</p>
     <p style="margin-top:1.5rem; font-size:.75rem; color:#888; letter-spacing:2px;">MAY 11, 2026 · VIRAC, CATANDUANES</p>
   </footer>
 
   <script>
-    // Cursor
+    // ── Cursor ──
     const dot  = document.querySelector('.cur-dot');
     const glow = document.querySelector('.cur-glow');
     document.addEventListener('mousemove', e => {
@@ -409,22 +415,21 @@
       setTimeout(()=>{ glow.style.left = e.clientX+'px'; glow.style.top = e.clientY+'px'; }, 55);
     });
 
-    // Parallax on hero image
+    // ── Parallax + Reveal ──
     window.addEventListener('scroll', () => {
       const img = document.querySelector('.parallax-img img');
       if(img) img.style.transform = `translateY(${window.scrollY * 0.15}px)`;
-
-      // Reveal
       document.querySelectorAll('.reveal').forEach(el => {
         if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('in');
       });
     });
-    // Trigger on load
     document.querySelectorAll('.reveal').forEach(el => {
       if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('in');
     });
 
-    // Countdown
+
+
+    // ── Countdown ──
     const target = new Date('May 11, 2026 13:00:00').getTime();
     function tick() {
       const diff = target - Date.now();
@@ -437,41 +442,61 @@
     }
     tick(); setInterval(tick, 1000);
 
-    // FAQ
+    // ── FAQ ──
     function toggleFaq(el) {
       el.parentElement.classList.toggle('open');
     }
 
-    // RSVP
-    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfX-jKtXVeqpfzm6HNvz57RcehFE9iXhE3YTyEpgbfct7NMhA/formResponse';
-    const FIELDS = {
-      name:'entry.877086558', email:'entry.1498135098',
-      attendance:'entry.2606285', message:'entry.273053581'
-    };
-    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    // ══════════════════════════════════════════════
+    // ── RSVP — Google Apps Script Web App ─────────
+    // ══════════════════════════════════════════════
+    //
+
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzXfMqzOzCS2opG9uqsEWNcDTN9lSIzOzPCl0FjKxOroiYvnuQyoJFtR_hGgfrxaJIYUw/exec';
+
+    document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const btn = this.querySelector('button');
+
+      const btn = document.getElementById('rsvpBtn');
       const fb  = document.getElementById('formFeedback');
-      btn.textContent = 'Sending…'; btn.style.opacity = '.6';
-      fb.style.display = 'block'; fb.style.color = 'var(--text-mid)';
-      fb.textContent = 'Sending your response…';
-      const fd = new FormData();
-      fd.append(FIELDS.name,       document.getElementById('entryName').value);
-      fd.append(FIELDS.email,      document.getElementById('entryEmail').value);
-      fd.append(FIELDS.attendance, document.getElementById('entryAttendance').value);
-      fd.append(FIELDS.message,    document.getElementById('entryMessage').value);
-      fetch(FORM_URL, { method:'POST', mode:'no-cors', body:fd })
-        .then(() => {
-          fb.textContent = '💛 Thank you! Your RSVP has been received.';
-          fb.style.color = 'var(--sage)';
-          btn.textContent = 'Sent ✓'; btn.style.opacity = '1';
+
+      const name       = document.getElementById('entryName').value.trim();
+      const email      = document.getElementById('entryEmail').value.trim();
+      const attendance = document.getElementById('entryAttendance').value;
+      const message    = document.getElementById('entryMessage').value.trim();
+
+      if (!name || !email || !attendance) return;
+
+      btn.textContent   = 'Sending…';
+      btn.disabled      = true;
+      btn.style.opacity = '.6';
+      fb.style.display  = 'block';
+      fb.style.color    = 'var(--text-mid)';
+      fb.textContent    = 'Sending your response…';
+
+      try {
+
+        const params = new URLSearchParams({ name, email, attendance, message });
+        const res    = await fetch(`${APPS_SCRIPT_URL}?${params}`, { method: 'GET' });
+        const data   = await res.json();
+
+        if (data.status === 'success') {
+          fb.textContent    = '💛 Thank you! Your RSVP has been received. Check your email for a confirmation.';
+          fb.style.color    = 'var(--sage)';
+          btn.textContent   = 'Sent ✓';
+          btn.style.opacity = '1';
           this.reset();
-        })
-        .catch(() => {
-          fb.textContent = 'Something went wrong. Please try again.';
-          fb.style.color = '#c0392b';
-          btn.textContent = 'Confirm Attendance'; btn.style.opacity = '1';
-        });
+        } else {
+          throw new Error(data.message || 'Unknown error');
+        }
+      } catch (err) {
+        fb.textContent    = '⚠️ Something went wrong. Please try again or contact us directly.';
+        fb.style.color    = '#c0392b';
+        btn.textContent   = 'Confirm Attendance';
+        btn.disabled      = false;
+        btn.style.opacity = '1';
+        console.error('RSVP error:', err);
+      }
     });
   </script>
 </body>
